@@ -92,8 +92,9 @@ NCD = $(PROJECT).ncd
 MAP_NCD = $(PROJECT)_map.ncd
 PCF = $(PROJECT).pcf
 BIT = $(PROJECT).bit
+MCS = $(PROJECT).mcs
 
-.PHONY: all clean program help utilization
+.PHONY: all clean mcs program help utilization
 
 all: $(BIT)
 
@@ -210,6 +211,9 @@ $(BIT): $(NCD)
 	@echo "Build complete!"
 	@ls -lh $(BIT)
 	@grep "Timing Score" $(PROJECT).par
+
+mcs: $(BIT)
+	promgen -w -spi -p mcs -c FF -o $(MCS) -s 4096 -u 0 $(BIT)
 
 program:
 	sudo xc3sprog -c jtaghs2 $(BIT)
