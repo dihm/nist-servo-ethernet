@@ -56,6 +56,10 @@ test_manual_results.txt
 # Python virtualenv
 venv/
 
+# UV stuff
+uv.lock
+.python-version
+
 # Scratch ISE bring-up workspace (build artifacts, not source)
 base/
 
